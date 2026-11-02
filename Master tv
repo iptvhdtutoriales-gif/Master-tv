@@ -1,0 +1,485 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>RUSS IPTV - Portada</title>
+  <style>
+    :root {
+      --bg-dark: #060913;
+      --bg-panel: rgba(13, 19, 36, 0.78);
+      --border-glass: rgba(255, 255, 255, 0.09);
+      --text-main: #f3f6fc;
+      --text-muted: #8b9bb4;
+      --cyan: #00e5ff;
+      --blue: #2979ff;
+      --purple: #aa00ff;
+      --pink: #ff2a85;
+      --green: #00e676;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      user-select: none;
+    }
+
+    body {
+      font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+      background-color: var(--bg-dark);
+      background-image:
+        radial-gradient(circle at 80% 15%, rgba(0, 229, 255, 0.14), transparent 40%),
+        radial-gradient(circle at 20% 85%, rgba(170, 0, 255, 0.12), transparent 45%),
+        linear-gradient(135deg, #05070f 0%, #0b1326 60%, #070a14 100%);
+      color: var(--text-main);
+      height: 100vh;
+      width: 100vw;
+      overflow: hidden;
+      display: flex;
+    }
+
+    /* Barra lateral izquierda */
+    .sidebar {
+      width: 72px;
+      height: 100%;
+      background: rgba(8, 12, 24, 0.92);
+      border-right: 1px solid var(--border-glass);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 20px 0;
+      justify-content: space-between;
+      z-index: 10;
+    }
+
+    .brand {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .brand-logo {
+      width: 42px;
+      height: 42px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(0, 229, 255, 0.25), rgba(0, 140, 255, 0.08));
+      border: 2px solid var(--cyan);
+      box-shadow: 0 0 14px rgba(0, 229, 255, 0.45);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--cyan);
+      font-size: 18px;
+    }
+
+    .brand-text {
+      font-size: 9px;
+      letter-spacing: 1.2px;
+      font-weight: 800;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      text-align: center;
+      line-height: 1.1;
+    }
+
+    .brand-text span {
+      display: block;
+      color: var(--text-main);
+      font-size: 10px;
+    }
+
+    .nav-group {
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+      align-items: center;
+    }
+
+    .icon-btn {
+      width: 42px;
+      height: 42px;
+      border-radius: 12px;
+      background: rgba(255, 255, 255, 0.04);
+      border: 1px solid var(--border-glass);
+      color: var(--text-muted);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      outline: none;
+    }
+
+    .icon-btn:hover,
+    .icon-btn:focus {
+      color: var(--text-main);
+      border-color: var(--cyan);
+      background: rgba(0, 229, 255, 0.12);
+      box-shadow: 0 0 12px rgba(0, 229, 255, 0.35);
+      transform: scale(1.06);
+    }
+
+    .icon-btn.power {
+      color: #ff5252;
+      border-color: rgba(255, 82, 82, 0.25);
+      background: rgba(255, 82, 82, 0.08);
+    }
+
+    .icon-btn.power:hover,
+    .icon-btn.power:focus {
+      border-color: #ff5252;
+      background: rgba(255, 82, 82, 0.2);
+      box-shadow: 0 0 12px rgba(255, 82, 82, 0.4);
+    }
+
+    /* Contenedor principal */
+    .main-container {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      padding: 20px 30px;
+      gap: 18px;
+      overflow-y: auto;
+      position: relative;
+    }
+
+    /* Cabecera superior */
+    .top-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      background: linear-gradient(90deg, rgba(16, 25, 48, 0.85) 0%, rgba(16, 25, 48, 0.45) 100%);
+      border: 1px solid var(--border-glass);
+      border-radius: 16px;
+      padding: 14px 22px;
+      backdrop-filter: blur(12px);
+    }
+
+    .user-info {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+    }
+
+    .avatar {
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, #f5af19, #f12711);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 800;
+      font-size: 18px;
+      color: #fff;
+      box-shadow: 0 4px 12px rgba(245, 175, 25, 0.35);
+    }
+
+    .user-details .greeting {
+      font-size: 11px;
+      color: #ffd54f;
+      font-weight: 600;
+      display: flex;
+      align-items: center;
+      gap: 5px;
+    }
+
+    .user-details .username {
+      font-size: 16px;
+      font-weight: 700;
+      color: var(--text-main);
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .user-details .username .dot {
+      width: 7px;
+      height: 7px;
+      background: var(--green);
+      border-radius: 50%;
+      display: inline-block;
+    }
+
+    .user-details .date-text {
+      font-size: 11px;
+      color: var(--text-muted);
+    }
+
+    .status-pill {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      padding: 6px 14px;
+      border-radius: 999px;
+      background: rgba(0, 230, 118, 0.12);
+      border: 1px solid rgba(0, 230, 118, 0.35);
+      color: var(--green);
+      font-size: 12px;
+      font-weight: 700;
+    }
+
+    .status-pill::before {
+      content: "";
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: var(--green);
+      box-shadow: 0 0 8px var(--green);
+    }
+
+    /* Títulos de sección */
+    .section-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .section-title {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 13px;
+      font-weight: 800;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      color: var(--text-main);
+    }
+
+    .section-title::before {
+      content: "";
+      width: 4px;
+      height: 16px;
+      border-radius: 4px;
+      background: var(--cyan);
+      box-shadow: 0 0 8px var(--cyan);
+    }
+
+    .badge-count {
+      background: rgba(255, 255, 255, 0.1);
+      color: var(--text-main);
+      font-size: 11px;
+      padding: 2px 8px;
+      border-radius: 10px;
+    }
+
+    .section-subtitle {
+      font-size: 12px;
+      font-weight: 400;
+      color: var(--text-muted);
+      text-transform: none;
+      letter-spacing: 0;
+    }
+
+    .btn-refresh {
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid var(--border-glass);
+      color: var(--text-main);
+      padding: 7px 14px;
+      border-radius: 10px;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.6px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      transition: all 0.2s ease;
+      outline: none;
+    }
+
+    .btn-refresh:hover,
+    .btn-refresh:focus {
+      border-color: var(--cyan);
+      background: rgba(0, 229, 255, 0.12);
+      box-shadow: 0 0 12px rgba(0, 229, 255, 0.3);
+    }
+
+    /* Continuar viendo */
+    .continue-row {
+      display: flex;
+      gap: 16px;
+      overflow-x: auto;
+      padding-bottom: 4px;
+    }
+
+    .continue-card {
+      width: 310px;
+      height: 74px;
+      background: var(--bg-panel);
+      border: 1px solid var(--border-glass);
+      border-radius: 14px;
+      padding: 8px 12px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      position: relative;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      outline: none;
+      flex-shrink: 0;
+    }
+
+    .continue-card:hover,
+    .continue-card:focus {
+      border-color: var(--cyan);
+      box-shadow: 0 0 16px rgba(0, 229, 255, 0.25);
+      transform: translateY(-2px);
+    }
+
+    .continue-thumb {
+      width: 82px;
+      height: 54px;
+      border-radius: 8px;
+      background-size: cover;
+      background-position: center;
+      flex-shrink: 0;
+      border: 1px solid rgba(255, 255, 255, 0.12);
+    }
+
+    .continue-info {
+      flex: 1;
+      overflow: hidden;
+    }
+
+    .continue-title {
+      font-size: 12px;
+      font-weight: 700;
+      color: var(--text-main);
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      margin-bottom: 2px;
+    }
+
+    .continue-sub {
+      font-size: 11px;
+      color: var(--text-muted);
+      margin-bottom: 8px;
+    }
+
+    .progress-track {
+      width: 100%;
+      height: 4px;
+      background: rgba(255, 255, 255, 0.12);
+      border-radius: 4px;
+      overflow: hidden;
+    }
+
+    .progress-fill {
+      height: 100%;
+      background: linear-gradient(90deg, var(--cyan), var(--blue));
+      border-radius: 4px;
+    }
+
+    .close-small {
+      position: absolute;
+      top: 8px;
+      right: 8px;
+      width: 20px;
+      height: 20px;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.08);
+      color: var(--text-muted);
+      border: none;
+      font-size: 11px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    /* Grid de 5 tarjetas principales */
+    .cards-grid {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 16px;
+      flex: 1;
+      min-height: 230px;
+    }
+
+    .feature-card {
+      position: relative;
+      border-radius: 18px;
+      padding: 20px 18px;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      cursor: pointer;
+      overflow: hidden;
+      border: 1.5px solid var(--border-glass);
+      background: var(--bg-panel);
+      transition: all 0.25s cubic-bezier(0.2, 0.8, 0.2, 1);
+      outline: none;
+    }
+
+    .feature-card::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      opacity: 0.35;
+      transition: opacity 0.25s ease;
+      z-index: 0;
+    }
+
+    .feature-card.live::before {
+      background: radial-gradient(circle at 75% 20%, rgba(0, 229, 255, 0.55), transparent 65%),
+                  linear-gradient(180deg, rgba(0, 110, 180, 0.25) 0%, rgba(6, 15, 32, 0.95) 100%);
+    }
+    .feature-card.movies::before {
+      background: radial-gradient(circle at 75% 20%, rgba(41, 121, 255, 0.55), transparent 65%),
+                  linear-gradient(180deg, rgba(20, 60, 160, 0.25) 0%, rgba(8, 14, 30, 0.95) 100%);
+    }
+    .feature-card.series::before {
+      background: radial-gradient(circle at 75% 20%, rgba(170, 0, 255, 0.55), transparent 65%),
+                  linear-gradient(180deg, rgba(90, 15, 160, 0.25) 0%, rgba(15, 10, 32, 0.95) 100%);
+    }
+    .feature-card.favs::before {
+      background: radial-gradient(circle at 75% 20%, rgba(255, 42, 133, 0.55), transparent 65%),
+                  linear-gradient(180deg, rgba(160, 15, 80, 0.25) 0%, rgba(28, 10, 24, 0.95) 100%);
+    }
+    .feature-card.multi::before {
+      background: radial-gradient(circle at 75% 20%, rgba(0, 230, 118, 0.55), transparent 65%),
+                  linear-gradient(180deg, rgba(10, 130, 80, 0.25) 0%, rgba(8, 24, 20, 0.95) 100%);
+    }
+
+    .feature-card:hover,
+    .feature-card:focus,
+    .feature-card.active {
+      transform: translateY(-5px) scale(1.02);
+    }
+
+    .feature-card.live:hover,
+    .feature-card.live:focus,
+    .feature-card.live.active {
+      border-color: var(--cyan);
+      box-shadow: 0 0 25px rgba(0, 229, 255, 0.45), inset 0 0 15px rgba(0, 229, 255, 0.15);
+    }
+
+    .feature-card.movies:hover,
+    .feature-card.movies:focus {
+      border-color: var(--blue);
+      box-shadow: 0 0 25px rgba(41, 121, 255, 0.45), inset 0 0 15px rgba(41, 121, 255, 0.15);
+    }
+
+    .feature-card.series:hover,
+    .feature-card.series:focus {
+      border-color: var(--purple);
+      box-shadow: 0 0 25px rgba(170, 0, 255, 0.45), inset 0 0 15px rgba(170, 0, 255, 0.15);
+    }
+
+    .feature-card.favs:hover,
+    .feature-card.favs:focus {
+      border-color: var(--pink);
+      box-shadow: 0 0 25px rgba(255, 42, 133, 0.45), inset 0 0 15px rgba(255, 42, 133, 0.15);
+    }
+
+    .feature-card.multi:hover,
+    .feature-card.multi:focus {
+      border-color: var(--green);
+      box-shadow: 0 0 25px rgba(0, 230, 118, 0.45), inset 0 0 15px rgba(0, 230, 118, 0.15);
+    }
+
+    .card-content {
